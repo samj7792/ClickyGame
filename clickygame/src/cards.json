@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "bird",
+    "image":
+      "https://lafeber.com/pet-birds/wp-content/uploads/2018/06/Cockatiel-2-300x300.jpg"
+  },
+  {
+    "id": 2,
+    "name": "cow",
+    "image":
+      "https://cdn.hswstatic.com/gif/dairy-cow-2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "dog",
+    "image": 
+      "http://www.mutkut.com/wp-content/uploads/2015/12/Vineyard-Vines-By-Mascot-Whale-Collar-on-Dog-300x300.jpg"
+  },
+  {
+    "id": 4,
+    "name": "cat",
+    "image": 
+      "https://www.worldsbestcatlitter.com/WBCL/wp-content/uploads/2017/05/9-im-aging-300x300.jpg"
+  },
+  {
+    "id": 5,
+    "name": "chicken",
+    "image": 
+      "http://blog8thandwal.wpengine.com/wp-content/uploads/2015/01/chicken-300x300.jpg"
+  },
+  {
+    "id": 6,
+    "name": "lizard",
+    "image":
+      "https://www.mydr.com.au/wp-content/uploads/2019/04/reptile_300-2.jpg"
+  },
+  {
+    "id": 7,
+    "name": "rat",
+    "image":
+      "https://lafeber.com/mammals/wp-content/uploads/rat-px-varga-871089-800-300x300.jpg"
+  },
+  {
+    "id": 8,
+    "name": "fish",
+    "image":
+      "https://reefbuilders.com/files/2008/07/clownfish-percula-amphiprion-percula-300x300.jpg"
+  }
+]
