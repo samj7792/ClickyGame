@@ -13,23 +13,37 @@ class App extends React.Component {
   handleIncrement = clickedid => {
     console.log(clickedid);
 
+    console.log(cards);
+    
     let clicked = [];
     clicked = this.state.cards.filter(clicked => clicked.id === clickedid);
-    clicked[0].clicked = true;
-    console.log(clicked[0]);
-
-    // this.state.cards.slice(clickedid);
-    // this.state.cards.push(clicked);
     
     function shuffle(array) {
       array.sort(() => Math.random() - 0.5);
     }
-    shuffle(this.state.cards);
-    console.log(this.state.cards);
     
-    this.setState({
-      count: this.state.count + 1,
-    });
+    if(!clicked[0].clicked){
+      clicked[0].clicked = true;
+      console.log(clicked[0]);
+      
+      shuffle(this.state.cards);
+      console.log(this.state.cards);
+      
+      this.setState({
+        count: this.state.count + 1,
+      });
+    } else {
+      shuffle(this.state.cards);
+
+      for (let i = 0; i < cards.length; i ++) {
+        cards[i].clicked = false
+      }
+
+      this.setState({
+        cards: cards,
+        count: 0
+      });
+    };
   };
 
   render () {
