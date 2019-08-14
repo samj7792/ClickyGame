@@ -10,7 +10,23 @@ class App extends React.Component {
     count: 0
   };
 
-  handleIncrement = () => {
+  handleIncrement = clickedid => {
+    console.log(clickedid);
+
+    let clicked = [];
+    clicked = this.state.cards.filter(clicked => clicked.id === clickedid);
+    clicked[0].clicked = true;
+    console.log(clicked[0]);
+
+    // this.state.cards.slice(clickedid);
+    // this.state.cards.push(clicked);
+    
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+    shuffle(this.state.cards);
+    console.log(this.state.cards);
+    
     this.setState({
       count: this.state.count + 1,
     });
@@ -27,7 +43,7 @@ class App extends React.Component {
               {/* <Counter /> */}
                   <div className="card mt-4">
                     <div className="img-container">
-                      <img src={card.image} className="card-img" alt={card.name} onClick={this.handleIncrement} />
+                      <img className="card-img" src={card.image} alt={card.name} id={card.id} key={card.id} onClick={() => this.handleIncrement(card.id)} />
                     </div>
                     {/* <div className="content">
                       <p>Click Count: {this.state.count}</p>
