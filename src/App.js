@@ -7,13 +7,14 @@ import cards from "./cards.json"
 class App extends React.Component {
   state = {
     cards: cards,
-    count: 0
+    count: 0,
+    wins: 0
   };
 
   handleIncrement = clickedid => {
-    console.log(clickedid);
+    // console.log(clickedid);
 
-    console.log(cards);
+    // console.log(cards);
     
     let clicked = [];
     clicked = this.state.cards.filter(clicked => clicked.id === clickedid);
@@ -32,6 +33,16 @@ class App extends React.Component {
       this.setState({
         count: this.state.count + 1,
       });
+      if(this.state.count > 10) {
+        for (let i = 0; i < cards.length; i ++) {
+          cards[i].clicked = false
+        }
+        this.setState({
+          cards: cards,
+          count: 0,
+          wins: this.state.wins + 1
+        })
+      }
     } else {
       shuffle(this.state.cards);
 
@@ -49,7 +60,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Header score={this.state.count} />
+        <Header score={this.state.count} wins={this.state.wins} />
         <Container>
           <div className='row'>
             {this.state.cards.map( card => (
@@ -67,7 +78,7 @@ class App extends React.Component {
                     </div> */}
               </div>
             </div>
-            ))};
+            ))}
           </div>
         </Container>
       </div>
