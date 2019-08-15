@@ -26,10 +26,10 @@ class App extends React.Component {
     
     if(!clicked[0].clicked){
       clicked[0].clicked = true;
-      console.log(clicked[0]);
+      // console.log(clicked[0]);
       
       shuffle(this.state.cards);
-      console.log(this.state.cards);
+      // console.log(this.state.cards);
       
       this.setState({
         count: this.state.count + 1,
