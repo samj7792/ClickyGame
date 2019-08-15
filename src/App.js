@@ -8,7 +8,8 @@ class App extends React.Component {
   state = {
     cards: cards,
     count: 0,
-    wins: 0
+    wins: 0,
+    losses: 0
   };
 
   handleIncrement = clickedid => {
@@ -52,7 +53,8 @@ class App extends React.Component {
 
       this.setState({
         cards: cards,
-        count: 0
+        count: 0,
+        losses: this.state.losses + 1
       });
     };
   };
@@ -60,7 +62,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Header score={this.state.count} wins={this.state.wins} />
+        <Header score={this.state.count} wins={this.state.wins} losses={this.state.losses} />
         <Container>
           <div className='row'>
             {this.state.cards.map( card => (
