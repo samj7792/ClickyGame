@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
-// import Counter from "./components/Counter.js";
+import Counter from "./components/Counter.js";
 import Container from "./components/Container.js";
 import cards from "./cards.json"
 
@@ -66,20 +66,13 @@ class App extends React.Component {
         <Container>
           <div className='row'>
             {this.state.cards.map( card => (
-            <div className='col-2'>
-              {/* <Counter /> */}
-                  <div className="card mt-4">
-                    <div className="img-container">
-                      <img className="card-img" src={card.image} alt={card.name} id={card.id} key={card.id} onClick={() => this.handleIncrement(card.id)} />
-                    </div>
-                    {/* <div className="content">
-                      <p>Click Count: {this.state.count}</p>
-                      <button className="btn btn-primary" onClick={this.handleIncrement}>
-                        Increment
-                      </button>
-                    </div> */}
-              </div>
-            </div>
+              <Counter
+                src={card.image}
+                alt={card.name}
+                id={card.id}
+                key={card.id}
+                onClick={() => this.handleIncrement(card.id)}
+              />
             ))}
           </div>
         </Container>
@@ -87,21 +80,5 @@ class App extends React.Component {
     );
   }
 }
-
-// function App () {
-//   return (
-//     <div>
-//       <Header />
-//       <Container>
-//         <div className='row'>
-//             <div className='col-2'>
-//               <Counter />
-//             </div>
-//         </div>
-//       </Container>
-//     </div>
-//   );
-// }
-
 
 export default App;
