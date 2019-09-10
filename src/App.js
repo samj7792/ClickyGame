@@ -2,70 +2,94 @@ import React from "react";
 import Header from "./components/Header";
 import Counter from "./components/Counter.js";
 import Container from "./components/Container.js";
-import cards from "./cards.json"
+import cards from "./cards.json";
+import WinLossModal from "./components/WinLossModal.js";
 
 class App extends React.Component {
   state = {
     cards: cards,
     count: 0,
     wins: 0,
-    losses: 0
+    losses: 0,
+    showModal: false,
+    winModal: false,
+    lossModal: false,
+  };
+
+  // Close modal function
+  close = () => {
+    this.setState({
+      showModal: false,
+      winModal: false,
+      lossModal:false
+    });
+  };
+
+  // Open modal function
+  open = () => {
+    // event.preventDefault();
+    this.setState({
+      showModal: true
+    });
   };
 
   handleIncrement = clickedid => {
-    // console.log(clickedid);
-
-    // console.log(cards);
-    
     let clicked = [];
     clicked = this.state.cards.filter(clicked => clicked.id === clickedid);
-    
+
     function shuffle(array) {
       array.sort(() => Math.random() - 0.5);
     }
-    
-    if(!clicked[0].clicked){
+
+    if (!clicked[0].clicked) {
       clicked[0].clicked = true;
-      // console.log(clicked[0]);
-      
+
       shuffle(this.state.cards);
-      // console.log(this.state.cards);
-      
+
       this.setState({
-        count: this.state.count + 1,
+        count: this.state.count + 1
       });
-      if(this.state.count > 10) {
-        for (let i = 0; i < cards.length; i ++) {
-          cards[i].clicked = false
+
+      if (this.state.count > 10) {
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].clicked = false;
         }
         this.setState({
           cards: cards,
           count: 0,
-          wins: this.state.wins + 1
-        })
+          wins: this.state.wins + 1,
+          winModal: true
+        });
+        this.open();
       }
     } else {
       shuffle(this.state.cards);
 
-      for (let i = 0; i < cards.length; i ++) {
-        cards[i].clicked = false
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].clicked = false;
       }
 
       this.setState({
         cards: cards,
         count: 0,
-        losses: this.state.losses + 1
+        losses: this.state.losses + 1,
+        lossModal: true
       });
-    };
+      this.open();
+    }
   };
 
-  render () {
+  render() {
     return (
-      <div>
-        <Header score={this.state.count} wins={this.state.wins} losses={this.state.losses} />
+      <>
+        <Header
+          score={this.state.count}
+          wins={this.state.wins}
+          losses={this.state.losses}
+        />
         <Container>
-          <div className='row'>
-            {this.state.cards.map( card => (
+          <div className="row">
+            {this.state.cards.map(card => (
               <Counter
                 src={card.image}
                 alt={card.name}
@@ -75,8 +99,15 @@ class App extends React.Component {
               />
             ))}
           </div>
+          <WinLossModal
+            show={this.state.showModal}
+            onHide={this.close}
+            onClick={this.close}
+            win={this.state.winModal}
+            loss={this.state.lossModal}
+          />
         </Container>
-      </div>
+      </>
     );
   }
 }
