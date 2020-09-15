@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./components/Header";
 import Counter from "./components/Counter.js";
-import Container from "./components/Container.js";
 import cards from "./cards.json";
 import WinLossModal from "./components/WinLossModal.js";
+import InstructionsModal from "./components/InstructionsModal";
 
 class App extends React.Component {
   state = {
@@ -11,6 +11,7 @@ class App extends React.Component {
     count: 0,
     wins: 0,
     losses: 0,
+    instructionModal: true,
     showModal: false,
     winModal: false,
     lossModal: false,
@@ -19,9 +20,10 @@ class App extends React.Component {
   // Close modal function
   close = () => {
     this.setState({
+      instructionModal: false,
       showModal: false,
       winModal: false,
-      lossModal:false
+      lossModal: false,
     });
   };
 
@@ -29,13 +31,13 @@ class App extends React.Component {
   open = () => {
     // event.preventDefault();
     this.setState({
-      showModal: true
+      showModal: true,
     });
   };
 
-  handleIncrement = clickedid => {
+  handleIncrement = (clickedid) => {
     let clicked = [];
-    clicked = this.state.cards.filter(clicked => clicked.id === clickedid);
+    clicked = this.state.cards.filter((clicked) => clicked.id === clickedid);
 
     function shuffle(array) {
       array.sort(() => Math.random() - 0.5);
@@ -47,7 +49,7 @@ class App extends React.Component {
       shuffle(this.state.cards);
 
       this.setState({
-        count: this.state.count + 1
+        count: this.state.count + 1,
       });
 
       if (this.state.count > 10) {
@@ -58,7 +60,7 @@ class App extends React.Component {
           cards: cards,
           count: 0,
           wins: this.state.wins + 1,
-          winModal: true
+          winModal: true,
         });
         this.open();
       }
@@ -73,11 +75,13 @@ class App extends React.Component {
         cards: cards,
         count: 0,
         losses: this.state.losses + 1,
-        lossModal: true
+        lossModal: true,
       });
       this.open();
     }
   };
+
+  componentDidMount() {}
 
   render() {
     return (
@@ -87,9 +91,9 @@ class App extends React.Component {
           wins={this.state.wins}
           losses={this.state.losses}
         />
-        <Container>
-          <div className="row">
-            {this.state.cards.map(card => (
+        <div className='container'>
+          <div className='row'>
+            {this.state.cards.map((card) => (
               <Counter
                 src={card.image}
                 alt={card.name}
@@ -99,6 +103,10 @@ class App extends React.Component {
               />
             ))}
           </div>
+          <InstructionsModal
+            show={this.state.instructionModal}
+            onHide={this.close}
+          />
           <WinLossModal
             show={this.state.showModal}
             onHide={this.close}
@@ -106,7 +114,7 @@ class App extends React.Component {
             win={this.state.winModal}
             loss={this.state.lossModal}
           />
-        </Container>
+        </div>
       </>
     );
   }
